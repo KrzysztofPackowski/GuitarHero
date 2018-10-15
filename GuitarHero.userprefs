@@ -1,10 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TrackView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Editor\TrackEditor.cs">
     <Files>
-      <File FileName="Assets\Scripts\Track.cs" Line="14" Column="26" />
-      <File FileName="Assets\Scripts\Editor\TrackEditor.cs" Line="26" Column="78" />
-      <File FileName="Assets\Scripts\TrackView.cs" Line="82" Column="45" />
+      <File FileName="Assets\Scripts\Track.cs" Line="15" Column="9" />
+      <File FileName="Assets\Scripts\Editor\TrackEditor.cs" Line="28" Column="15" />
+      <File FileName="Assets\Scripts\TrackView.cs" Line="82" Column="29" />
+      <File FileName="Assets\Scripts\GameplayController.cs" Line="66" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -10,7 +10,8 @@ namespace Beats
     [RequireComponent (typeof(RectTransform))]
     public class TrackView : MonoBehaviour
     {
-        [SerializeField] Track _track;
+        public enum Trigger {Missed, Right, Wrong}
+        //[SerializeField] Track _track;
 
         [SerializeField] RectTransform _left;
         [SerializeField] RectTransform _right;
@@ -20,8 +21,11 @@ namespace Beats
         [SerializeField] RectTransform _empty;
 
         RectTransform _rTransform;
+        List<Image> _beatViews;
 
         Vector2 _position;
+        float _beatViewSize;
+        float _spacing;
 
         public float position {
             get {
@@ -42,6 +46,11 @@ namespace Beats
         {
             _rTransform = (RectTransform)transform;
             _position = _rTransform.anchoredPosition;
+
+            _beatViewSize = _empty.rect.height;
+            _spacing = GetComponent<VerticalLayoutGroup> ().spacing;
+
+            _beatViews = new List<Image> ();
 
             foreach (int b in track.beats) {
                 GameObject g;
@@ -67,19 +76,39 @@ namespace Beats
                     break;
                 }
 
-                GameObject t = GameObject.Instantiate (g, transform);
-                t.transform.SetAsFirstSibling ();
+                Image view = GameObject.Instantiate (g, transform).GetComponent<Image> ();
+                view.transform.SetAsFirstSibling ();
+
+                _beatViews.Add (view);
             }
         }
 
         void Start ()
         {
-            Init (_track);
+            Init (GameplayController.Instance.track);
         }
 
         void Update()
         {
-            position -= Time.deltaTime * 200f;
+            position -= (_beatViewSize + _spacing) * Time.deltaTime * GameplayController.Instance.beatsPerSecond;
+        }
+
+        public void TriggerBeatView (int index, Trigger trigger)
+        {
+            switch (trigger)
+            {
+            case Trigger.Missed:
+                _beatViews [index].color = Color.grey;
+                break;
+
+            case Trigger.Right:
+                _beatViews [index].color = Color.yellow;
+                break;
+
+            case Trigger.Wrong:
+                _beatViews [index].color = Color.black;
+                break;
+            }
         }
     }
 }

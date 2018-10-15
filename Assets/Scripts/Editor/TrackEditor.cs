@@ -24,8 +24,8 @@ namespace Beats
             base.OnInspectorGUI();  // call inherited (original) OnInspectorGUI();
 
             // Don't display beats information if list is not yet initialized
-            if (track.beats == null)
-                return;
+            //if (track.beats == null)
+            //    return;
 
             if(track.beats.Count == 0)
             {
